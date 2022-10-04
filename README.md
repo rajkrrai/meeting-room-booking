@@ -68,3 +68,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### validations to implement:
+- if room is booked for all day then dont allow to book any event for this day and room
+- check for over lapping time
+- add user who booked the toom,
+- add all checkbox and disable end date
+- check for login, who booked the room
