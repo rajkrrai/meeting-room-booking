@@ -70,8 +70,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ### validations to implement:
-- if room is booked for all day then dont allow to book any event for this day and room
-- check for over lapping time
-- add user who booked the toom,
-- add all checkbox and disable end date
+- if room is booked for all day then dont allow to book any event for this day and room (done)
+- check for over lapping time (done)
+- add all checkbox and disable end date (done)
+- cancel meeting, edit meeting
 - check for login, who booked the room
+- pass meeting room events to calender for separate veiw
