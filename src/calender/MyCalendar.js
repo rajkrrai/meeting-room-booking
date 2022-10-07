@@ -2,6 +2,7 @@ import React, { Fragment, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Calendar, Views, DateLocalizer } from 'react-big-calendar'
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import EventModal from "./EventModal";
 
 export default function MyCalendar({ localizer, eventSet, room }) {
   const handleSelectEvent = useCallback(
@@ -31,6 +32,7 @@ export default function MyCalendar({ localizer, eventSet, room }) {
         startAccessor="start" endAccessor="end"
         scrollToTime={scrollToTime}
       />
+      <EventModal openModal={true} />
     </Fragment>
   )
 }

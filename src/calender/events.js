@@ -34,7 +34,11 @@ const eventsList = [
     'start': new Date('Mon Oct 06 2022 09:32:00 GMT+0530 (India Standard Time)'),
 
     'end': new Date('Mon Oct 06 2022 08:32:00 GMT+0530 (India Standard Time)'),
-    'room': 'Room 2'
+    'room': 'Room 2',
+    'capacity': 3,
+    'bookedBy': 'rajesh',
+    'bookedFor': 'apoorva',
+    'reason': ''
   },
 
 ]

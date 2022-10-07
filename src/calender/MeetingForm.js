@@ -24,6 +24,7 @@ import MyCalendar from "./MyCalendar";
 import eventsList from "./events";
 import moment from "moment";
 import { nanoid } from "nanoid";
+import EventModal from "./EventModal";
 
 const MeetingForm = () => {
     const [booking, setBooking] = useState({
@@ -56,6 +57,7 @@ const MeetingForm = () => {
         locales,
     });
     const handleCalFormSubmit = (e) => {
+        console.log('form', e);
         e.preventDefault();
 
         setTimeout(() => setMessage({ display: false }), 7000);
@@ -70,7 +72,7 @@ const MeetingForm = () => {
             });
 
         //check for capacity
-        if (e.target[1].value == 0)
+        if (e.target[2].value == 0)
             return setMessage({
                 display: true,
                 msg: "Please select capacity.",
@@ -118,7 +120,7 @@ const MeetingForm = () => {
         setEvents(NewEvents);
         setMessage({
             display: true,
-            msg: `Your booking is confirmed. Note Booking id: ${bookingId} for future reference.`,
+            msg: `<p>Your booking is confirmed. Note Booking id: <strong>${bookingId}</strong> for future reference.</p>`,
             msgType: "Success",
             severity: "success",
         });
@@ -229,7 +231,7 @@ const MeetingForm = () => {
                                 onChange={(e) => {
 
                                     let myroom = rooms.filter((room) => {
-                                        return room.capacity <= e.target.value;
+                                        return room.capacity >= e.target.value;
                                     });
                                     console.log('myroom', myroom);
                                     setRoomOtpion(myroom);
@@ -316,9 +318,7 @@ const MeetingForm = () => {
                 <Button variant='contained' type='submit'>
                     Book
                 </Button>
-                <Button variant='outlined' color='error' >
-                    Cancel
-                </Button>
+
             </form>
             {booking.room && (
                 <MyCalendar
@@ -327,6 +327,7 @@ const MeetingForm = () => {
                     room={booking.room}
                 />
             )}
+
         </Container>
     );
 };
