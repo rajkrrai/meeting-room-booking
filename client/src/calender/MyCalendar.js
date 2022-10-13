@@ -1,14 +1,19 @@
-import React, { Fragment, useCallback, useMemo } from 'react'
+import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Calendar, Views, DateLocalizer } from 'react-big-calendar'
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import EventModal from "./EventModal";
 
 export default function MyCalendar({ localizer, eventSet, room }) {
-  const handleSelectEvent = useCallback(
-    (event) => window.alert(event.title + ' ' + event.room),
-    []
-  )
+  const [openModal, setOpenModal] = useState(false)
+  const [data, setEventData] = useState()
+  const handleSelectEvent = (event) => {
+
+    console.log('event details:', event);
+    setEventData(event)
+    setOpenModal(true)
+    // window.alert(event.title + ' ' + event.room)
+  }
 
   const { defaultDate, scrollToTime } = useMemo(
     () => ({
@@ -17,14 +22,19 @@ export default function MyCalendar({ localizer, eventSet, room }) {
     }),
     []
   )
+
+  const handleCloseModal = () => {
+    console.log('inclose modal');
+    setOpenModal(false)
+  }
   return (
     <Fragment>
       <h4>Availability for {room}</h4>
       <Calendar
-        style={{ height: 500, margin: "10px 50px" }}
+        style={{ height: 800, margin: "10px 50px" }}
         defaultDate={defaultDate}
         defaultView={Views.WEEK}
-        events={eventSet}
+        events={eventSet.filter((events) => events.room === room)}
         localizer={localizer}
         onSelectEvent={handleSelectEvent}
         // onSelectSlot={handleSelectSlot}
@@ -32,7 +42,7 @@ export default function MyCalendar({ localizer, eventSet, room }) {
         startAccessor="start" endAccessor="end"
         scrollToTime={scrollToTime}
       />
-      <EventModal openModal={true} />
+      {data && (<EventModal openModal={openModal} data={data} handleCloseModal={handleCloseModal} />)}
     </Fragment>
   )
 }

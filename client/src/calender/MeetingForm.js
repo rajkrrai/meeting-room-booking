@@ -120,7 +120,7 @@ const MeetingForm = () => {
         setEvents(NewEvents);
         setMessage({
             display: true,
-            msg: `<p>Your booking is confirmed. Note Booking id: <strong>${bookingId}</strong> for future reference.</p>`,
+            msg: `Your booking is confirmed. Note Booking id: ${bookingId} for future reference.`,
             msgType: "Success",
             severity: "success",
         });
@@ -143,14 +143,14 @@ const MeetingForm = () => {
                 event.room == booking.room &&
                 moment(event.start).isSame(booking.startTime, "dates")
         );
-        console.log(found);
+        console.log('***** found',found);
         if (found) {
             let format = "hh:mm:ss";
             let time = moment(booking.startTime, format),
                 beforeTime = moment(found.start, format),
                 afterTime = moment(found.end, format);
             console.log({ time, beforeTime, afterTime });
-            if (time.isBetween(beforeTime, afterTime)) {
+            if (time.isBetween(beforeTime, afterTime) || time.isSame(beforeTime, afterTime))  {
                 console.log("is between");
                 overlap = true;
             }
@@ -204,7 +204,7 @@ const MeetingForm = () => {
                                 setBooking({ ...booking, title: e.target.value })
                             }
                             value={booking.title}
-                            style={{ width: "60%", marginLeft: "0" }}
+                        //style={{ width: "60%", marginLeft: "0" }}
                         />
                     </Grid>
                     <Grid xs={2} item>
